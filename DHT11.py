@@ -18,7 +18,7 @@ def loop():
             headers = {
                 'Content-Type': 'application/json',
             }
-            data = '{"temperatura": "%.2f", "humedad":"%.2f"}' % (dht.humidity,dht.temperature)
+            data = '{"temperatura": "%.2f", "humedad":"%.2f"}' % (dht.temperature,dht.humidity)
 
             #Enviamos la petición
             response = requests.post('http://localhost/add', headers=headers, data=data.encode())
