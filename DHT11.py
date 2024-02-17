@@ -12,7 +12,7 @@ def loop():
         if (chk == dht.DHTLIB_OK):      #Si el dato leído es correcto
 
             #Mostramos temperatura por la consola
-            print("Humedad : %.2f, \t Temperatura : %.2f \n" % (dht.humidity,dht.temperature))
+            print("Humedad : %.2f, \t Temperatura : %.2f" % (dht.humidity,dht.temperature))
 
             #Y construimos la petición HTTP
             headers = {
@@ -24,7 +24,7 @@ def loop():
             response = requests.post('http://localhost/add', headers=headers, data=data.encode())
 
             #Mostramos el código de estado de la respuesta: 200 OK
-            print(f"Server response: {response.status_code}")
+            print(f"Server response: {response.status_code}\n")
         #En cualquier caso, esperamos 2 segundos y volvemos al inicio
         time.sleep(2)       
         
