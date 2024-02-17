@@ -21,7 +21,10 @@ def loop():
             data = '{"temperatura": "%.2f", "humedad":"%.2f"}' % (dht.temperature,dht.humidity)
 
             #Enviamos la petición
-            response = requests.post('http://localhost/add', headers=headers, data=data.encode())
+			url = "https://seguridad-industrial-v94k.onrender.com/"
+			#url = "http://localhost"
+            response = requests.post(f'{url}/add', headers=headers, data=data.encode())
+			
 
             #Mostramos el código de estado de la respuesta: 200 OK
             print(f"Server response: {response.status_code}\n")
