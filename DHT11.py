@@ -8,6 +8,7 @@
 import RPi.GPIO as GPIO
 import time
 import Freenove_DHT as DHT
+import requests
 DHTPin = 11     #define the pin of DHT11
 
 def loop():
@@ -16,6 +17,13 @@ def loop():
         chk = dht.readDHT11()     #read DHT11 and get a return value. Then determine whether data read is normal according to the return value.
         if (chk is dht.DHTLIB_OK):      #read DHT11 and get a return value. Then determine whether data read is normal according to the return value.
             print("Humidity : %.2f, \t Temperature : %.2f \n"%(dht.humidity,dht.temperature))
+
+            headers = {
+                'Content-Type': 'application/json',
+            }
+            data = '{"temperatura":{dht.humidity}}, "humedad":"{dht.temperature}}"}'.encode()
+            response = requests.post('http://localhost/add', headers=headers, data=data)
+            print("Server response: {response.status_code}")
         time.sleep(2)       
         
 if __name__ == '__main__':
